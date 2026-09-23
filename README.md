@@ -1,6 +1,5 @@
 # r3dg0d.github.io
 
-A dependency-free static site for `https://r3dg0d.github.io`.
+Personal site for [r3dg0d](https://r3dg0d.github.io) — about, workstation specs, and public projects.
 
-GitHub Pages serves `index.html` directly from the repository root. The
-`.nojekyll` marker disables Jekyll processing, so no build step is required.
+Static `index.html` at the repo root. `.nojekyll` disables Jekyll; no build step required.

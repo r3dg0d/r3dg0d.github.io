@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#000000">
     <meta
       name="description"
-      content="r3dg0d — a small corner of the internet."
+      content="r3dg0d — software engineer in California. Linux tooling, OPSEC CLIs, and desktop experiments."
     >
     <title>r3dg0d</title>
     <style>
@@ -18,13 +18,8 @@
         --line: #2a2a2a;
       }
 
-      * {
-        box-sizing: border-box;
-      }
-
-      html {
-        scroll-behavior: smooth;
-      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
 
       body {
         min-height: 100vh;
@@ -38,10 +33,7 @@
         line-height: 1.75;
       }
 
-      ::selection {
-        background: var(--green);
-        color: #000000;
-      }
+      ::selection { background: var(--green); color: #000000; }
 
       a {
         color: var(--ink);
@@ -49,30 +41,18 @@
         text-underline-offset: 0.25em;
         transition: color 120ms ease;
       }
-
-      a:hover,
-      a:focus-visible {
-        color: var(--green);
-        outline: none;
-      }
-
-      a:focus-visible {
-        text-decoration: underline;
-      }
+      a:hover, a:focus-visible { color: var(--green); outline: none; }
+      a:focus-visible { text-decoration: underline; }
 
       .page {
         position: relative;
         z-index: 1;
-        width: min(100% - 40px, 760px);
+        width: min(100% - 40px, 820px);
         margin: 0 auto;
         padding: 48px 0 32px;
       }
 
-      header,
-      footer,
-      section {
-        position: relative;
-      }
+      header, footer, section { position: relative; }
 
       header {
         display: flex;
@@ -96,30 +76,17 @@
         flex-wrap: wrap;
         gap: 8px 18px;
       }
-
-      nav a::before {
-        content: "[";
-        color: var(--dim);
-      }
-
-      nav a::after {
-        content: "]";
-        color: var(--dim);
-      }
+      nav a::before { content: "["; color: var(--dim); }
+      nav a::after { content: "]"; color: var(--dim); }
 
       .intro {
-        min-height: 50vh;
+        min-height: 42vh;
         display: grid;
         align-content: center;
-        padding: 72px 0;
+        padding: 64px 0;
       }
 
-      .eyebrow,
-      .label,
-      time {
-        color: var(--dim);
-      }
-
+      .eyebrow, .label, time, .meta, .lang { color: var(--dim); }
       .eyebrow {
         margin: 0 0 18px;
         letter-spacing: 0.1em;
@@ -127,9 +94,9 @@
       }
 
       .intro h2 {
-        max-width: 610px;
+        max-width: 640px;
         margin: 0;
-        font-size: clamp(18px, 4vw, 32px);
+        font-size: clamp(18px, 4vw, 30px);
         font-weight: 400;
         line-height: 1.35;
         letter-spacing: -0.035em;
@@ -153,7 +120,7 @@
 
       .section-grid {
         display: grid;
-        grid-template-columns: 120px 1fr;
+        grid-template-columns: 140px 1fr;
         gap: 28px;
       }
 
@@ -164,34 +131,53 @@
         text-transform: uppercase;
       }
 
-      .copy p {
-        margin: 0 0 18px;
+      .copy p { margin: 0 0 18px; }
+      .copy p:last-child { margin-bottom: 0; }
+
+      .stats {
+        margin: 22px 0 0;
+        padding: 0;
+        list-style: none;
+        border: 1px solid var(--line);
+      }
+      .stats li {
+        display: grid;
+        grid-template-columns: 120px 1fr;
+        gap: 16px;
+        padding: 8px 12px;
+        border-bottom: 1px dotted var(--line);
+      }
+      .stats li:last-child { border-bottom: 0; }
+      .stats .k { color: var(--dim); text-transform: uppercase; letter-spacing: 0.06em; }
+
+      .group { margin: 0 0 28px; }
+      .group:last-child { margin-bottom: 0; }
+      .group-title {
+        margin: 0 0 10px;
+        color: var(--green);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
       }
 
-      .copy p:last-child {
-        margin-bottom: 0;
-      }
-
-      .index-list {
+      .projects {
         margin: 0;
         padding: 0;
         list-style: none;
       }
-
-      .index-list li {
+      .projects li {
         display: grid;
-        grid-template-columns: 96px 1fr auto;
-        gap: 18px;
-        padding: 10px 0;
+        grid-template-columns: minmax(140px, 180px) 1fr auto;
+        gap: 14px 18px;
+        align-items: start;
+        padding: 12px 0;
         border-bottom: 1px dotted var(--line);
       }
-
-      .index-list li:first-child {
-        padding-top: 0;
-      }
-
-      .index-list span:last-child {
-        color: var(--dim);
+      .projects li:first-child { padding-top: 0; }
+      .projects .name { font-weight: 400; }
+      .projects .desc { color: var(--ink); }
+      .projects .lang {
+        white-space: nowrap;
+        text-align: right;
       }
 
       footer {
@@ -201,11 +187,7 @@
         padding-top: 28px;
         color: var(--dim);
       }
-
-      footer p {
-        margin: 0;
-      }
-
+      footer p { margin: 0; }
       .signal::before {
         content: "●";
         margin-right: 7px;
@@ -222,84 +204,34 @@
         user-select: none;
         pointer-events: none;
       }
-
-      .ascii-one {
-        top: 15%;
-        left: max(18px, calc(50% - 590px));
-        transform: rotate(-4deg);
-      }
-
-      .ascii-two {
-        top: 56%;
-        right: max(14px, calc(50% - 610px));
-        transform: rotate(5deg);
-      }
-
-      .ascii-three {
-        bottom: 4%;
-        left: max(14px, calc(50% - 560px));
-      }
+      .ascii-one { top: 15%; left: max(18px, calc(50% - 590px)); transform: rotate(-4deg); }
+      .ascii-two { top: 56%; right: max(14px, calc(50% - 610px)); transform: rotate(5deg); }
+      .ascii-three { bottom: 4%; left: max(14px, calc(50% - 560px)); }
 
       @keyframes blink {
-        0%,
-        48% {
-          opacity: 1;
-        }
-        49%,
-        100% {
-          opacity: 0;
-        }
+        0%, 48% { opacity: 1; }
+        49%, 100% { opacity: 0; }
       }
 
       @media (prefers-reduced-motion: reduce) {
-        html {
-          scroll-behavior: auto;
-        }
-
-        .cursor {
-          animation: none;
-        }
+        html { scroll-behavior: auto; }
+        .cursor { animation: none; }
       }
 
-      @media (max-width: 620px) {
-        .page {
-          width: min(100% - 32px, 760px);
-          padding-top: 28px;
-        }
-
-        header,
-        footer {
-          align-items: flex-start;
-          flex-direction: column;
-          gap: 14px;
-        }
-
-        .intro {
-          min-height: 58vh;
-          padding: 56px 0;
-        }
-
-        .section-grid {
-          grid-template-columns: 1fr;
-          gap: 24px;
-        }
-
-        .index-list li {
-          grid-template-columns: 76px 1fr;
-        }
-
-        .index-list span:last-child {
-          display: none;
-        }
-
-        .ascii {
-          opacity: 0.55;
-        }
+      @media (max-width: 700px) {
+        .page { width: min(100% - 32px, 820px); padding-top: 28px; }
+        header, footer { align-items: flex-start; flex-direction: column; gap: 14px; }
+        .intro { min-height: 48vh; padding: 48px 0; }
+        .section-grid { grid-template-columns: 1fr; gap: 24px; }
+        .projects li { grid-template-columns: 1fr; gap: 4px 0; }
+        .projects .lang { text-align: left; }
+        .stats li { grid-template-columns: 96px 1fr; }
+        .ascii { opacity: 0.55; }
       }
     </style>
   </head>
   <body>
-    <pre class="ascii ascii-one" aria-hidden="true">   /\_/\\
+    <pre class="ascii ascii-one" aria-hidden="true">   /\_/\
   ( o.o )
    &gt; ^ &lt;</pre>
     <pre class="ascii ascii-two" aria-hidden="true">+----------------+
@@ -315,16 +247,17 @@
         <h1 class="wordmark">r3dg0d</h1>
         <nav aria-label="Main navigation">
           <a href="#about">about</a>
-          <a href="#index">index</a>
+          <a href="#projects">projects</a>
+          <a href="#system">system</a>
           <a href="https://github.com/r3dg0d">github</a>
         </nav>
       </header>
 
       <div class="intro">
-        <p class="eyebrow">user@internet:~$ ./hello</p>
+        <p class="eyebrow">user@zionsec:~$ whoami</p>
         <h2>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-          posuere erat a ante.<span class="cursor" aria-hidden="true"></span>
+          24-year-old software engineer from California — shipping Linux tools,
+          OPSEC CLIs, and desktop experiments.<span class="cursor" aria-hidden="true"></span>
         </h2>
       </div>
 
@@ -333,66 +266,155 @@
           <h2 class="label" id="about-title">01 / about</h2>
           <div class="copy">
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
+              I’m a software engineer based in California. I build practical
+              Linux tooling: privacy/OPSEC CLIs, Wayland desktop utilities, and
+              local AI workflows that stay honest about what they can and can’t do.
             </p>
             <p>
-              Duis aute irure dolor in reprehenderit in voluptate velit esse
-              cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-              cupidatat non proident, sunt in culpa qui officia deserunt mollit
-              anim id est laborum.
+              Most of my public work lives under
+              <a href="https://github.com/r3dg0d">github.com/r3dg0d</a> —
+              small, focused repos with clear docs, Nix where it helps, and no
+              marketing fluff.
             </p>
           </div>
         </div>
       </section>
 
-      <section id="index" aria-labelledby="index-title">
+      <section id="system" aria-labelledby="system-title">
         <div class="section-grid">
-          <h2 class="label" id="index-title">02 / index</h2>
-          <ol class="index-list">
-            <li>
-              <time datetime="2026">2026</time>
-              <a href="#fragment-a">Lorem ipsum dolor</a>
-              <span>001.txt</span>
-            </li>
-            <li>
-              <time datetime="2026">2026</time>
-              <a href="#fragment-b">Consectetur adipiscing</a>
-              <span>002.txt</span>
-            </li>
-            <li>
-              <time datetime="2026">2026</time>
-              <a href="#fragment-c">Sed do eiusmod tempor</a>
-              <span>003.txt</span>
-            </li>
-          </ol>
+          <h2 class="label" id="system-title">02 / system</h2>
+          <div>
+            <p class="meta" style="margin:0 0 12px">Workstation <span style="color:var(--ink)">zionsec</span> · NixOS desktop</p>
+            <ul class="stats">
+              <li><span class="k">host</span><span>zionsec · MAINGEAR MG-1</span></li>
+              <li><span class="k">os</span><span>NixOS 26.11 (Zokor) · Linux 7.2.5 · x86_64</span></li>
+              <li><span class="k">cpu</span><span>Intel Core i9-14900K · 24 cores / 32 threads</span></li>
+              <li><span class="k">ram</span><span>31 GiB</span></li>
+              <li><span class="k">gpu</span><span>NVIDIA GeForce RTX 4090 · 24 GB · driver 595.99</span></li>
+              <li><span class="k">disk</span><span>1.8 TB NVMe</span></li>
+              <li><span class="k">wm</span><span>Hyprland (Wayland) · Ghostty · PipeWire</span></li>
+            </ul>
+          </div>
         </div>
       </section>
 
-      <section id="fragments" aria-labelledby="fragments-title">
+      <section id="projects" aria-labelledby="projects-title">
         <div class="section-grid">
-          <h2 class="label" id="fragments-title">03 / fragments</h2>
-          <div class="copy">
-            <p id="fragment-a">
-              [001] Quis autem vel eum iure reprehenderit qui in ea voluptate
-              velit esse quam nihil molestiae consequatur.
-            </p>
-            <p id="fragment-b">
-              [002] At vero eos et accusamus et iusto odio dignissimos ducimus
-              qui blanditiis praesentium voluptatum deleniti atque.
-            </p>
-            <p id="fragment-c">
-              [003] Nam libero tempore, cum soluta nobis est eligendi optio
-              cumque nihil impedit quo minus id quod maxime placeat.
-            </p>
+          <h2 class="label" id="projects-title">03 / projects</h2>
+          <div>
+            <div class="group">
+              <h3 class="group-title">PRIV / SEC toolkit</h3>
+              <ul class="projects">
+                <li>
+                  <a class="name" href="https://github.com/r3dg0d/privsec-tools">privsec-tools</a>
+                  <span class="desc">Directory for the Linux PRIV/SEC OPSEC CLI toolkit — independent tool repos + Nix package set.</span>
+                  <span class="lang">Nix</span>
+                </li>
+                <li>
+                  <a class="name" href="https://github.com/r3dg0d/opsec-check">opsec-check</a>
+                  <span class="desc">Umbrella privacy/security audit CLI for Linux OPSEC tooling.</span>
+                  <span class="lang">Rust</span>
+                </li>
+                <li>
+                  <a class="name" href="https://github.com/r3dg0d/macrandom">macrandom</a>
+                  <span class="desc">MAC-address randomizer with NetworkManager awareness — honest OPSEC tooling.</span>
+                  <span class="lang">Rust</span>
+                </li>
+                <li>
+                  <a class="name" href="https://github.com/r3dg0d/mullvadctl">mullvadctl</a>
+                  <span class="desc">Companion CLI for Mullvad VPN — status, relay helpers, privacy-session.</span>
+                  <span class="lang">Rust</span>
+                </li>
+                <li>
+                  <a class="name" href="https://github.com/r3dg0d/dnscheck">dnscheck</a>
+                  <span class="desc">DNS privacy analyzer — resolv.conf, systemd-resolved, NetworkManager, Mullvad.</span>
+                  <span class="lang">Rust</span>
+                </li>
+                <li>
+                  <a class="name" href="https://github.com/r3dg0d/netidentity">netidentity</a>
+                  <span class="desc">Local network identity snapshot and diff tool for Linux OPSEC.</span>
+                  <span class="lang">Rust</span>
+                </li>
+                <li>
+                  <a class="name" href="https://github.com/r3dg0d/metaclean">metaclean</a>
+                  <span class="desc">File metadata inspector and scrubber (EXIF, GPS, Office, media).</span>
+                  <span class="lang">Rust</span>
+                </li>
+                <li>
+                  <a class="name" href="https://github.com/r3dg0d/fileshred">fileshred</a>
+                  <span class="desc">Honest secure-delete utility that explains SSD/CoW/TRIM limitations.</span>
+                  <span class="lang">Rust</span>
+                </li>
+                <li>
+                  <a class="name" href="https://github.com/r3dg0d/browserprivacy">browserprivacy</a>
+                  <span class="desc">Read-only browser privacy audit for Chromium and Firefox on Linux.</span>
+                  <span class="lang">Rust</span>
+                </li>
+                <li>
+                  <a class="name" href="https://github.com/r3dg0d/fakeperson">fakeperson</a>
+                  <span class="desc">CLI for photorealistic fictional people with persistent synthetic identities.</span>
+                  <span class="lang">Python</span>
+                </li>
+                <li>
+                  <a class="name" href="https://github.com/r3dg0d/aivoice">aivoice</a>
+                  <span class="desc">Local real-time AI voice conversion — MeanVC2 wrapper with PipeWire virtual mic.</span>
+                  <span class="lang">Python</span>
+                </li>
+                <li>
+                  <a class="name" href="https://github.com/r3dg0d/deepfake">deepfake</a>
+                  <span class="desc">Face-swap CLI for research/VFX — AlphaFace wrapper with webcam, video, virtualcam.</span>
+                  <span class="lang">Python</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="group">
+              <h3 class="group-title">Desktop / Linux</h3>
+              <ul class="projects">
+                <li>
+                  <a class="name" href="https://github.com/r3dg0d/KeystrokeNoise">KeystrokeNoise</a>
+                  <span class="desc">Multi-keyboard mechanical click sounds + mouse clicks for Linux (evdev daemon).</span>
+                  <span class="lang">Rust</span>
+                </li>
+                <li>
+                  <a class="name" href="https://github.com/r3dg0d/MatrixShot">MatrixShot</a>
+                  <span class="desc">Wayland screenshot + screen-recording suite (grim/slurp + gpu-screen-recorder + Quickshell).</span>
+                  <span class="lang">QML</span>
+                </li>
+                <li>
+                  <a class="name" href="https://github.com/r3dg0d/dotfiles">dotfiles</a>
+                  <span class="desc">Audited NixOS workstation: Hyprland, Ambxst, Ghostty CRT, reproducible system config.</span>
+                  <span class="lang">Nix</span>
+                </li>
+                <li>
+                  <a class="name" href="https://github.com/r3dg0d/matrix-code-rain-sddm">matrix-code-rain-sddm</a>
+                  <span class="desc">Matrix-inspired SDDM greeter — animated Katakana rain, black-and-green login panel.</span>
+                  <span class="lang">QML</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="group">
+              <h3 class="group-title">Games / other</h3>
+              <ul class="projects">
+                <li>
+                  <a class="name" href="https://github.com/r3dg0d/vanillaamericamc">vanillaamericamc</a>
+                  <span class="desc">Vanilla America+ cross-platform Minecraft server, portal, plugin, and NixOS deployment.</span>
+                  <span class="lang">Java</span>
+                </li>
+                <li>
+                  <a class="name" href="https://github.com/r3dg0d/stream-able">stream-able</a>
+                  <span class="desc">OBS-like recording/livestream studio that runs inside Minecraft, with Chromium browser sources.</span>
+                  <span class="lang">Java</span>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>
 
       <footer>
-        <p class="signal">online / somewhere</p>
+        <p class="signal">online / california</p>
         <p>© 2026 r3dg0d</p>
       </footer>
     </main>
