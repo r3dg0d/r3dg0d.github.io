@@ -7,6 +7,7 @@
 
 from __future__ import annotations
 
+import datetime
 import re
 import sys
 import urllib.error
@@ -110,6 +111,16 @@ def main() -> int:
         problems.append("inline style attributes found (use a class)")
     if re.search(r"<img\b(?![^>]*\balt=)", text):
         problems.append("<img> without alt")
+
+    m = re.search(r'id="age"\s+data-birthday="(\d{4})-(\d{2})-(\d{2})">(\d+)<', text)
+    if not m:
+        problems.append("age element with data-birthday not found")
+    else:
+        by, bm, bd, shown = (int(x) for x in m.groups())
+        today = datetime.date.today()
+        expected = today.year - by - ((today.month, today.day) < (bm, bd))
+        if shown != expected:
+            problems.append(f"no-JS age fallback says {shown} but the age is {expected}; update index.html")
 
     if "--links" in sys.argv:
         problems += check_links(page.hrefs)

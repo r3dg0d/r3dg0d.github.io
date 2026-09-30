@@ -294,7 +294,7 @@
       <div class="intro">
         <p class="eyebrow">user@zionsec:~$ whoami</p>
         <h2>
-          24-year-old software engineer from California — shipping Linux tools,
+          <span id="age" data-birthday="2002-06-27">24</span>-year-old software engineer from California — shipping Linux tools,
           OPSEC CLIs, and desktop experiments.<span class="cursor" aria-hidden="true"></span>
         </h2>
       </div>
@@ -483,5 +483,18 @@
         <p>© 2026 r3dg0d</p>
       </footer>
     </div>
+    <script>
+      // Age from the birthday in data-birthday. The text in the markup is only the
+      // no-JavaScript fallback; scripts/check_site.py fails CI when it goes stale.
+      (function () {
+        var el = document.getElementById("age");
+        if (!el) return;
+        var b = el.getAttribute("data-birthday").split("-").map(Number);
+        var now = new Date();
+        var age = now.getFullYear() - b[0];
+        if (now.getMonth() + 1 < b[1] || (now.getMonth() + 1 === b[1] && now.getDate() < b[2])) age--;
+        if (age > 0 && age < 120) el.textContent = String(age);
+      })();
+    </script>
   </body>
 </html>
