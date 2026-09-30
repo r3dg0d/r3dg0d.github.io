@@ -1,0 +1,19 @@
+name: Site checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: "17 6 * * 1"   # weekly: catches project links that have gone dead
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Structure, metadata and anchors
+        run: python3 scripts/check_site.py
+      - name: External links
+        run: python3 scripts/check_site.py --links

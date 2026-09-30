@@ -6,9 +6,23 @@
     <meta name="theme-color" content="#000000">
     <meta
       name="description"
-      content="r3dg0d — software engineer in California. Linux tooling, OPSEC CLIs, and desktop experiments."
+      content="r3dg0d — software engineer in California. Linux tooling, OPSEC CLIs, local AI voice and media tools, and desktop experiments."
     >
-    <title>r3dg0d</title>
+    <title>r3dg0d — Linux tooling, OPSEC CLIs, desktop experiments</title>
+    <link rel="canonical" href="https://r3dg0d.github.io/">
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23000'/%3E%3Ctext x='16' y='23' font-family='monospace' font-size='22' text-anchor='middle' fill='%2300ff66'%3Er%3C/text%3E%3C/svg%3E"
+    >
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="r3dg0d">
+    <meta property="og:title" content="r3dg0d — Linux tooling, OPSEC CLIs, desktop experiments">
+    <meta
+      property="og:description"
+      content="Small, focused open-source projects: privacy/OPSEC CLIs, Wayland desktop utilities, local AI voice and media tools, and a Minecraft streaming studio."
+    >
+    <meta property="og:url" content="https://r3dg0d.github.io/">
+    <meta name="twitter:card" content="summary">
     <style>
       :root {
         color-scheme: dark;
@@ -29,7 +43,7 @@
         color: var(--ink);
         font-family: "IBM Plex Mono", "SFMono-Regular", Consolas,
           "Liberation Mono", monospace;
-        font-size: 12px;
+        font-size: 13px;
         line-height: 1.75;
       }
 
@@ -41,8 +55,30 @@
         text-underline-offset: 0.25em;
         transition: color 120ms ease;
       }
-      a:hover, a:focus-visible { color: var(--green); outline: none; }
-      a:focus-visible { text-decoration: underline; }
+      a:hover, a:focus-visible { color: var(--green); }
+      a:focus-visible {
+        text-decoration: underline;
+        outline: 1px solid var(--green);
+        outline-offset: 3px;
+      }
+      /* Links inside running text must not rely on colour alone. */
+      .copy a { text-decoration: underline; text-decoration-color: var(--dim); }
+      .copy a:hover, .copy a:focus-visible { text-decoration-color: var(--green); }
+
+      .skip {
+        position: absolute;
+        z-index: 3;
+        top: 8px;
+        left: 8px;
+        padding: 6px 10px;
+        background: #000000;
+        border: 1px solid var(--green);
+        transform: translateY(-200%);
+      }
+      .skip:focus { transform: none; }
+
+      .meta-line { margin: 0 0 12px; }
+      .meta-line strong { color: var(--ink); font-weight: 400; }
 
       .page {
         position: relative;
@@ -242,7 +278,8 @@
   *       .       .
       [::]    *</pre>
 
-    <main class="page">
+    <a class="skip" href="#main">skip to content</a>
+    <div class="page">
       <header>
         <h1 class="wordmark">r3dg0d</h1>
         <nav aria-label="Main navigation">
@@ -253,6 +290,7 @@
         </nav>
       </header>
 
+      <main id="main">
       <div class="intro">
         <p class="eyebrow">user@zionsec:~$ whoami</p>
         <h2>
@@ -284,13 +322,13 @@
         <div class="section-grid">
           <h2 class="label" id="system-title">02 / system</h2>
           <div>
-            <p class="meta" style="margin:0 0 12px">Workstation <span style="color:var(--ink)">zionsec</span> · NixOS desktop</p>
+            <p class="meta meta-line">Workstation <strong>zionsec</strong> · NixOS desktop · snapshot 2026-09-30</p>
             <ul class="stats">
               <li><span class="k">host</span><span>zionsec · MAINGEAR MG-1</span></li>
-              <li><span class="k">os</span><span>NixOS 26.11 (Zokor) · Linux 7.2.5 · x86_64</span></li>
+              <li><span class="k">os</span><span>NixOS 26.11 (Zokor) · Linux 7.2.8 · x86_64</span></li>
               <li><span class="k">cpu</span><span>Intel Core i9-14900K · 24 cores / 32 threads</span></li>
               <li><span class="k">ram</span><span>31 GiB</span></li>
-              <li><span class="k">gpu</span><span>NVIDIA GeForce RTX 4090 · 24 GB · driver 595.99</span></li>
+              <li><span class="k">gpu</span><span>NVIDIA GeForce RTX 4090 · 24 GB · driver 595.104.02</span></li>
               <li><span class="k">disk</span><span>1.8 TB NVMe</span></li>
               <li><span class="k">wm</span><span>Hyprland (Wayland) · Ghostty · PipeWire</span></li>
             </ul>
@@ -372,6 +410,11 @@
               <h3 class="group-title">Desktop / Linux</h3>
               <ul class="projects">
                 <li>
+                  <a class="name" href="https://github.com/r3dg0d/Nala-Voice">Nala-Voice</a>
+                  <span class="desc">Cute Linux voice assistant with local AI — wake word, streaming speech, multi-model routing (Qt6 / C++ / QML, Hyprland). Fork of yappologistic/Nala.</span>
+                  <span class="lang">C++</span>
+                </li>
+                <li>
                   <a class="name" href="https://github.com/r3dg0d/dotfiles">dotfiles</a>
                   <span class="desc">Audited NixOS workstation: Hyprland, Ambxst, Ghostty CRT, reproducible system config.</span>
                   <span class="lang">Nix</span>
@@ -397,6 +440,11 @@
                   <span class="lang">Python</span>
                 </li>
                 <li>
+                  <a class="name" href="https://github.com/r3dg0d/nixpresence">nixpresence</a>
+                  <span class="desc">NixOS-native VRChat OSC chatbox + Discord presence (MagicChatBox-inspired, independent MIT).</span>
+                  <span class="lang">Rust</span>
+                </li>
+                <li>
                   <a class="name" href="https://github.com/r3dg0d/KeystrokeNoise">KeystrokeNoise</a>
                   <span class="desc">Multi-keyboard mechanical click sounds + mouse clicks for Linux (evdev daemon).</span>
                   <span class="lang">Rust</span>
@@ -419,7 +467,7 @@
                 </li>
                 <li>
                   <a class="name" href="https://github.com/r3dg0d/stream-able">stream-able</a>
-                  <span class="desc">OBS-like recording/livestream studio that runs inside Minecraft, with Chromium browser sources.</span>
+                  <span class="desc">OBS-like recording/livestream studio inside Minecraft (Fabric, 26.1.2 / 26.2 / 26.3), with Chromium browser sources.</span>
                   <span class="lang">Java</span>
                 </li>
               </ul>
@@ -428,10 +476,12 @@
         </div>
       </section>
 
+      </main>
+
       <footer>
         <p class="signal">online / california</p>
         <p>© 2026 r3dg0d</p>
       </footer>
-    </main>
+    </div>
   </body>
 </html>

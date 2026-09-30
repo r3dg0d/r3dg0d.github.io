@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://r3dg0d.github.io/sitemap.xml
