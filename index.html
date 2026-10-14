@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#b46bff">
     <meta
       name="description"
-      content="r3dg0d — software engineer in California, moving to Windows 11 and building open-source software for gamers: game tools, mods, and game development."
+      content="r3dg0d — software engineer in California building open-source software for gamers: game tools, mods, and game development."
     >
     <title>r3dg0d — open-source software for gamers, game dev, and players</title>
     <link rel="canonical" href="https://r3dg0d.github.io/">
@@ -19,7 +19,7 @@
     <meta property="og:title" content="r3dg0d — open-source software for gamers, game dev, and players">
     <meta
       property="og:description"
-      content="Open-source software for gamers and players: a Minecraft streaming studio, a Minecraft server, VRChat tooling, plus past Linux/OPSEC CLIs and desktop experiments."
+      content="Open-source software for gamers and players: a Minecraft streaming studio, a cross-play Minecraft server, VRChat tooling, plus AI media, privacy and desktop tools."
     >
     <meta property="og:url" content="https://r3dg0d.github.io/">
     <meta property="og:locale" content="en_US">
@@ -31,7 +31,7 @@
     <meta property="og:image:alt" content="r3dg0d — open-source software for gamers. Video games, game development, software engineering for players.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="r3dg0d — open-source software for gamers, game dev, and players">
-    <meta name="twitter:description" content="Open-source software for gamers and players: a Minecraft streaming studio, a Minecraft server, VRChat tooling, plus past Linux/OPSEC CLIs.">
+    <meta name="twitter:description" content="Open-source software for gamers and players: a Minecraft streaming studio, a cross-play Minecraft server, VRChat tooling, plus AI media, privacy and desktop tools.">
     <meta name="twitter:image" content="https://r3dg0d.github.io/og-image.png">
     <meta name="twitter:image:alt" content="r3dg0d — open-source software for gamers.">
     <style>
@@ -88,6 +88,9 @@
       .eyebrow { margin: 0 0 16px; color: var(--accent); font-size: 13px; letter-spacing: .12em; text-transform: uppercase; }
       .intro h2 { max-width: 760px; margin: 0; font-size: clamp(26px, 5vw, 46px); font-weight: 700; line-height: 1.12; letter-spacing: -.03em; }
       .intro h2 em { font-style: normal; background: linear-gradient(90deg, var(--accent), var(--accent-2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+      .intro .lede a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--accent-2); }
+      .section-head { margin-bottom: 24px; }
+      .group .cards { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
       .intro .lede { max-width: 640px; margin: 20px 0 0; color: var(--dim); font-size: 17px; }
       .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 24px 0 0; padding: 0; list-style: none; font-size: 12px; }
       .chips li { padding: 4px 10px; border: 1px solid var(--line); border-radius: 999px; background: rgba(255,255,255,.02); color: var(--dim); }
@@ -156,10 +159,7 @@
       <header>
         <h1 class="wordmark">r3dg0d</h1>
         <nav aria-label="Main navigation">
-          <a href="#about">about</a>
-          <a href="#games">games</a>
           <a href="#projects">projects</a>
-          <a href="#system">system</a>
           <a href="#socials">socials</a>
           <a href="https://github.com/r3dg0d">github</a>
         </nav>
@@ -167,211 +167,155 @@
 
       <main id="main">
       <div class="intro">
-        <p class="eyebrow">player one · new save</p>
+        <p class="eyebrow">player one · open source</p>
         <h2>
           <span id="age" data-birthday="2002-06-27">24</span>-year-old software engineer from California, building
           <em>open-source software for gamers</em>.<span class="cursor" aria-hidden="true"></span>
         </h2>
         <p class="lede">
-          Moving off Linux and onto Windows 11 to focus on video games, game
-          development, and software engineering for players.
+          Video games, game development, and software engineering for players.
+          Every project below is open source on
+          <a href="https://github.com/r3dg0d">GitHub</a>.
         </p>
-        <ul class="chips" aria-label="Current focus">
-          <li class="on">Windows 11</li>
-          <li class="on">tools for gamers</li>
-          <li class="on">game dev</li>
-          <li>mods &amp; servers</li>
-          <li>open source</li>
-        </ul>
       </div>
 
-      <section id="about" aria-labelledby="about-title">
-        <div class="section-grid">
-          <h2 class="label" id="about-title">01 / about</h2>
-          <div class="copy">
-            <p>
-              I’m a software engineer based in California. After years of
-              practical Linux tooling (privacy/OPSEC CLIs, Wayland desktop
-              utilities, and local AI workflows on NixOS), I’m
-              <strong>moving to Windows 11</strong> and pointing my work at games.
-            </p>
-            <p>
-              The plan: <strong>open-source software for gamers</strong>, more time
-              on video games and game development, and software engineering
-              that’s built for players first.
-            </p>
-            <p>
-              Same habits as before: small, focused repos with clear docs and no
-              marketing fluff. It all lives under
-              <a href="https://github.com/r3dg0d">github.com/r3dg0d</a>.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section id="games" aria-labelledby="games-title">
-        <div class="section-grid">
-          <h2 class="label" id="games-title">02 / games</h2>
-          <ul class="cards">
-                <li class="card">
-                  <a class="name" href="https://github.com/r3dg0d/stream-able">stream-able</a>
-                  <span class="desc">OBS-like recording/livestream studio inside Minecraft (Fabric, 26.1.2 / 26.2 / 26.3), with Chromium browser sources.</span>
-                  <span class="lang">Java</span>
-                </li>
-<li class="card">
-                  <a class="name" href="https://github.com/r3dg0d/vanillaamericamc">vanillaamericamc</a>
-                  <span class="desc">Vanilla America+ cross-platform Minecraft server, portal, plugin, and NixOS deployment.</span>
-                  <span class="lang">Java</span>
-                </li>
-<li class="card">
-                  <a class="name" href="https://github.com/r3dg0d/nixpresence">nixpresence</a>
-                  <span class="desc">NixOS-native VRChat OSC chatbox + Discord presence (MagicChatBox-inspired, independent MIT).</span>
-                  <span class="lang">Rust</span>
-                </li>
-          </ul>
-        </div>
-      </section>
-
       <section id="projects" aria-labelledby="projects-title">
-        <div class="section-grid">
-          <h2 class="label" id="projects-title">03 / projects</h2>
-          <div>
-            <p class="meta-line">Earlier Linux/NixOS work. Still public, still useful.</p>
-            <div class="group">
-              <h3 class="group-title">PRIV / SEC toolkit <span class="tag">past · Linux</span></h3>
-              <ul class="projects">
-                <li>
-                  <a class="name" href="https://github.com/r3dg0d/privsec-tools">privsec-tools</a>
-                  <span class="desc">Directory for the Linux PRIV/SEC OPSEC CLI toolkit — independent tool repos + Nix package set.</span>
-                  <span class="lang">Nix</span>
-                </li>
-                <li>
-                  <a class="name" href="https://github.com/r3dg0d/opsec-check">opsec-check</a>
-                  <span class="desc">Umbrella privacy/security audit CLI for Linux OPSEC tooling.</span>
-                  <span class="lang">Rust</span>
-                </li>
-                <li>
-                  <a class="name" href="https://github.com/r3dg0d/macrandom">macrandom</a>
-                  <span class="desc">MAC-address randomizer with NetworkManager awareness — honest OPSEC tooling.</span>
-                  <span class="lang">Rust</span>
-                </li>
-                <li>
-                  <a class="name" href="https://github.com/r3dg0d/mullvadctl">mullvadctl</a>
-                  <span class="desc">Companion CLI for Mullvad VPN — status, relay helpers, privacy-session.</span>
-                  <span class="lang">Rust</span>
-                </li>
-                <li>
-                  <a class="name" href="https://github.com/r3dg0d/dnscheck">dnscheck</a>
-                  <span class="desc">DNS privacy analyzer — resolv.conf, systemd-resolved, NetworkManager, Mullvad.</span>
-                  <span class="lang">Rust</span>
-                </li>
-                <li>
-                  <a class="name" href="https://github.com/r3dg0d/netidentity">netidentity</a>
-                  <span class="desc">Local network identity snapshot and diff tool for Linux OPSEC.</span>
-                  <span class="lang">Rust</span>
-                </li>
-                <li>
-                  <a class="name" href="https://github.com/r3dg0d/metaclean">metaclean</a>
-                  <span class="desc">File metadata inspector and scrubber (EXIF, GPS, Office, media).</span>
-                  <span class="lang">Rust</span>
-                </li>
-                <li>
-                  <a class="name" href="https://github.com/r3dg0d/fileshred">fileshred</a>
-                  <span class="desc">Honest secure-delete utility that explains SSD/CoW/TRIM limitations.</span>
-                  <span class="lang">Rust</span>
-                </li>
-                <li>
-                  <a class="name" href="https://github.com/r3dg0d/browserprivacy">browserprivacy</a>
-                  <span class="desc">Read-only browser privacy audit for Chromium and Firefox on Linux.</span>
-                  <span class="lang">Rust</span>
-                </li>
-                <li>
-                  <a class="name" href="https://github.com/r3dg0d/fakeperson">fakeperson</a>
-                  <span class="desc">CLI for photorealistic fictional people with persistent synthetic identities.</span>
-                  <span class="lang">Python</span>
-                </li>
-                <li>
-                  <a class="name" href="https://github.com/r3dg0d/aivoice">aivoice</a>
-                  <span class="desc">Local real-time AI voice conversion — MeanVC2 wrapper with PipeWire virtual mic.</span>
-                  <span class="lang">Python</span>
-                </li>
-                <li>
-                  <a class="name" href="https://github.com/r3dg0d/deepfake">deepfake</a>
-                  <span class="desc">Face-swap CLI for research/VFX — AlphaFace wrapper with webcam, video, virtualcam.</span>
-                  <span class="lang">Python</span>
-                </li>
-              </ul>
-            </div>
-
-            <div class="group">
-              <h3 class="group-title">Desktop / Linux <span class="tag">past · Linux</span></h3>
-              <ul class="projects">
-                <li>
-                  <a class="name" href="https://github.com/r3dg0d/Nala-Voice">Nala-Voice</a>
-                  <span class="desc">Cute Linux voice assistant with local AI — wake word, streaming speech, multi-model routing (Qt6 / C++ / QML, Hyprland). Fork of yappologistic/Nala.</span>
-                  <span class="lang">C++</span>
-                </li>
-                <li>
-                  <a class="name" href="https://github.com/r3dg0d/dotfiles">dotfiles</a>
-                  <span class="desc">Audited NixOS workstation: Hyprland, Ambxst, Ghostty CRT, reproducible system config.</span>
-                  <span class="lang">Nix</span>
-                </li>
-                <li>
-                  <a class="name" href="https://github.com/r3dg0d/matrix">matrix</a>
-                  <span class="desc">Realtime Matrix-style digital rain for the terminal (Rust + crossterm).</span>
-                  <span class="lang">Rust</span>
-                </li>
-                <li>
-                  <a class="name" href="https://github.com/r3dg0d/MatrixShot">MatrixShot</a>
-                  <span class="desc">Wayland screenshot + screen-recording suite (grim/slurp + gpu-screen-recorder + Quickshell).</span>
-                  <span class="lang">QML</span>
-                </li>
-                <li>
-                  <a class="name" href="https://github.com/r3dg0d/vmtools">vmtools</a>
-                  <span class="desc">windowsvm / linuxvm / androidvm — NixOS-friendly VM CLI suite (QEMU/KVM + Docker-Android-Pro).</span>
-                  <span class="lang">Python</span>
-                </li>
-                <li>
-                  <a class="name" href="https://github.com/r3dg0d/ai-media-cli">ai-media-cli</a>
-                  <span class="desc">Local-first AI media CLI suite (Qwen text2img/img2img, 3dai, editvideo).</span>
-                  <span class="lang">Python</span>
-                </li>
-                <li>
-                  <a class="name" href="https://github.com/r3dg0d/KeystrokeNoise">KeystrokeNoise</a>
-                  <span class="desc">Multi-keyboard mechanical click sounds + mouse clicks for Linux (evdev daemon).</span>
-                  <span class="lang">Rust</span>
-                </li>
-                <li>
-                  <a class="name" href="https://github.com/r3dg0d/matrix-code-rain-sddm">matrix-code-rain-sddm</a>
-                  <span class="desc">Matrix-inspired SDDM greeter — animated Katakana rain, black-and-green login panel.</span>
-                  <span class="lang">QML</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="system" aria-labelledby="system-title">
-        <div class="section-grid">
-          <h2 class="label" id="system-title">04 / system</h2>
-          <div>
-            <p class="meta-line">Workstation <strong>zionsec</strong> · moving from NixOS to Windows 11</p>
-            <ul class="stats">
-              <li><span class="k">host</span><span>zionsec · MAINGEAR MG-1</span></li>
-              <li><span class="k">os</span><span><span class="new">Windows 11</span> · previously NixOS 26.11 (Zokor)</span></li>
-              <li><span class="k">cpu</span><span>Intel Core i9-14900K · 24 cores / 32 threads</span></li>
-              <li><span class="k">ram</span><span>31 GiB</span></li>
-              <li><span class="k">gpu</span><span>NVIDIA GeForce RTX 4090 · 24 GB</span></li>
-              <li><span class="k">disk</span><span>1.8 TB NVMe</span></li>
+        <h2 class="label section-head" id="projects-title">01 / projects</h2>
+          <div class="group">
+            <h3 class="group-title">Games & player tools <span class="tag">3</span></h3>
+            <ul class="cards">
+              <li class="card">
+                <a class="name" href="https://github.com/r3dg0d/stream-able">stream-able</a>
+                <span class="desc">An OBS-like recording, livestreaming and multistreaming studio that runs inside Minecraft as a Fabric mod (MC 26.1.2 / 26.2 / 26.3), successor to Record-able. It adds RTMP/RTMPS streaming and multistreaming, interactive Chromium browser sources composited over gameplay, a microphone chain with optional local AI noise cancellation, and ultrawide support. Everything is driven from an in-game Studio screen (F6), and FFmpeg, the browser engine and models are downloaded on demand, pinned and SHA-256 verified.</span>
+                <span class="lang">Java</span>
+              </li>
+              <li class="card">
+                <a class="name" href="https://github.com/r3dg0d/vanillaamericamc">vanillaamericamc</a>
+                <span class="desc">Vanilla America+ is a client-mod-free Paper server project for Java and Bedrock cross-play. The repo holds the custom Paper plugin, a local operations portal, BlueMap integration, audited reports, a mock-only shop and a NixOS deployment module. Deployments default to loopback-only listeners and never accept the EULA, open public ports or enable live payments on their own.</span>
+                <span class="lang">Java</span>
+              </li>
+              <li class="card">
+                <a class="name" href="https://github.com/r3dg0d/nixpresence">nixpresence</a>
+                <span class="desc">A VRChat OSC chatbox compositor with an optional Discord Rich Presence daemon, inspired by the ideas behind MagicChatBox but written independently under MIT. Providers such as MPRIS music and the focused window feed a shared state that is templated and sent to VRChat OSC, Discord or stdout. It includes doctor, preview and test commands and a systemd user service.</span>
+                <span class="lang">Rust</span>
+              </li>
             </ul>
           </div>
-        </div>
+          <div class="group">
+            <h3 class="group-title">Creative & AI media <span class="tag">4</span></h3>
+            <ul class="cards">
+              <li class="card">
+                <a class="name" href="https://github.com/r3dg0d/ai-media-cli">ai-media-cli</a>
+                <span class="desc">A local-first AI media CLI suite: Qwen-Image text-to-image and image editing, 3dai for a multi-stage TRELLIS.2 3D asset pipeline, and editvideo for SCAIL-2 character animation jobs. An ai-media doctor command checks environment, GPU and terminal-graphics support. Model weights are never bundled, and the shared preview/config tooling works without a GPU.</span>
+                <span class="lang">Python</span>
+              </li>
+              <li class="card">
+                <a class="name" href="https://github.com/r3dg0d/aivoice">aivoice</a>
+                <span class="desc">Local real-time AI voice conversion built on MeanVC2, exposed as a PipeWire virtual microphone. It searches community voice catalogs, downloads and validates voices, and builds reusable zero-shot MeanVC2 profiles from reference audio, including an honest RVC-to-MeanVC2 profile migration that does not pretend to convert weights. Usage requires an explicit consent acknowledgement.</span>
+                <span class="lang">Python</span>
+              </li>
+              <li class="card">
+                <a class="name" href="https://github.com/r3dg0d/deepfake">deepfake</a>
+                <span class="desc">A real-time face-swap CLI for research and VFX that wraps the AlphaFace research model. It adds an application shell around it: webcam and video capture, detect-swap-composite, presets and metrics, plus OBS-friendly outputs (preview, file, FFmpeg pipe, GStreamer, v4l2loopback virtual camera). A first-run consent notice and a synthetic-media watermark are on by default.</span>
+                <span class="lang">Python</span>
+              </li>
+              <li class="card">
+                <a class="name" href="https://github.com/r3dg0d/fakeperson">fakeperson</a>
+                <span class="desc">A CLI for photorealistic fictional people with persistent synthetic identities (seed plus locked facial and style traits) rendered through a pluggable model backend. Safeguards refuse likely real-person or celebrity prompts and stamp every PNG as synthetic. A deterministic stub backend keeps it testable without a GPU.</span>
+                <span class="lang">Python</span>
+              </li>
+            </ul>
+          </div>
+          <div class="group">
+            <h3 class="group-title">Privacy & security <span class="tag">10</span></h3>
+            <ul class="cards">
+              <li class="card">
+                <a class="name" href="https://github.com/r3dg0d/blurcam">blurcam</a>
+                <span class="desc">Native C++20 face privacy for Linux: YuNet face detection and optical-flow tracking with local blur, pixelation and glitch effects. It processes files through FFmpeg, previews with SDL, and outputs to a v4l2loopback virtual camera. No accounts, cloud inference, uploads or telemetry, and the docs are explicit that detection is fallible and offer a max-privacy preset and box masks.</span>
+                <span class="lang">C++</span>
+              </li>
+              <li class="card">
+                <a class="name" href="https://github.com/r3dg0d/privsec-tools">privsec-tools</a>
+                <span class="desc">The directory for a Linux-first privacy, security and OPSEC CLI toolkit. Every tool lives in its own independent repo; this umbrella indexes them with install commands and versions and optionally exposes a Nix package set. It states plainly that the tools improve hygiene and awareness but do not make anyone anonymous.</span>
+                <span class="lang">Nix</span>
+              </li>
+              <li class="card">
+                <a class="name" href="https://github.com/r3dg0d/opsec-check">opsec-check</a>
+                <span class="desc">An umbrella, read-only privacy/OPSEC audit CLI for Linux covering network identity, VPN, DNS, MAC and more, optionally calling sibling tools (macrandom, mullvadctl, dnscheck, netidentity, metaclean, browserprivacy, fileshred) when installed. Findings are classed as informational, attention recommended or configuration issue, each with why it matters, and there is deliberately no fake privacy score. Output as text, JSON, Markdown or HTML.</span>
+                <span class="lang">Rust</span>
+              </li>
+              <li class="card">
+                <a class="name" href="https://github.com/r3dg0d/macrandom">macrandom</a>
+                <span class="desc">A Linux MAC-address randomizer with NetworkManager awareness. It lists interfaces with current and permanent MACs, randomizes fully or vendor-preserving, saves originals so they can be restored, and can set per-connection cloned MACs in NetworkManager. VPN, container, bridge and loopback interfaces are skipped by default, and the README documents what MAC randomization does not protect against.</span>
+                <span class="lang">Rust</span>
+              </li>
+              <li class="card">
+                <a class="name" href="https://github.com/r3dg0d/mullvadctl">mullvadctl</a>
+                <span class="desc">A companion CLI for the official Mullvad VPN client: status (relay, exit IP, location, DNS, IPv6, kill-switch hints), connect, relay rotation and relay browsing. check verifies connectivity and runs DNS-leak heuristics, and privacy-session snapshots state, optionally randomizes the MAC, connects, verifies and restores on exit. It never reimplements tunnel security and refuses to run without the official mullvad binary.</span>
+                <span class="lang">Rust</span>
+              </li>
+              <li class="card">
+                <a class="name" href="https://github.com/r3dg0d/dnscheck">dnscheck</a>
+                <span class="desc">A DNS privacy analyzer that inspects resolv.conf, systemd-resolved, NetworkManager and Mullvad for likely leaks, fallback resolvers, VPN DNS bypass and split DNS. Passive by default, with optional active probes via dig/nslookup. Reports include JSON output and explicit statements of what cannot be detected.</span>
+                <span class="lang">Rust</span>
+              </li>
+              <li class="card">
+                <a class="name" href="https://github.com/r3dg0d/netidentity">netidentity</a>
+                <span class="desc">Captures a snapshot of a machine&#x27;s network identity: hostname, interfaces, IPs and MACs, gateway, VPN, DNS, listening ports, firewall, Wi-Fi SSID and mDNS/UPnP hints. Snapshots are saved as JSON and can be diffed over time to spot changes. An offline mode skips the public-IP lookup, and secrets in free-form fields are redacted.</span>
+                <span class="lang">Rust</span>
+              </li>
+              <li class="card">
+                <a class="name" href="https://github.com/r3dg0d/metaclean">metaclean</a>
+                <span class="desc">A metadata inspector and scrubber for JPEG, PNG, WebP, HEIC, MP4, MOV, MP3, FLAC, WAV, PDF and Office files, surfacing GPS, timestamps, camera, author and software tags. It uses mat2 or exiftool when available and built-in Rust fallbacks otherwise. Originals are never overwritten by default: it writes a cleaned copy, and in-place mode makes a backup first.</span>
+                <span class="lang">Rust</span>
+              </li>
+              <li class="card">
+                <a class="name" href="https://github.com/r3dg0d/fileshred">fileshred</a>
+                <span class="desc">An honest secure-delete CLI: multi-pass overwrite and unlink on HDDs with non-CoW filesystems, and refusal without explicit acknowledgement on SSD/NVMe, Btrfs/ZFS, network or unknown storage. inspect reports the filesystem, mount options and rotational flag with advice, and explain spells out the limits of wear-leveling, TRIM, snapshots and backups. It never claims a file is guaranteed gone when the storage stack can&#x27;t guarantee it.</span>
+                <span class="lang">Rust</span>
+              </li>
+              <li class="card">
+                <a class="name" href="https://github.com/r3dg0d/browserprivacy">browserprivacy</a>
+                <span class="desc">A read-only privacy auditor for Chromium-family and Firefox-family browser profiles on Linux, including Flatpak variants. It checks WebRTC, DNS-over-HTTPS, proxy mode, cookie policy, site permissions and extension inventories, and counts storage and service-worker entries. It never reads passwords, tokens, cookie values or credential stores.</span>
+                <span class="lang">Rust</span>
+              </li>
+            </ul>
+          </div>
+          <div class="group">
+            <h3 class="group-title">Desktop & terminal <span class="tag">5</span></h3>
+            <ul class="cards">
+              <li class="card">
+                <a class="name" href="https://github.com/r3dg0d/MatrixShot">MatrixShot</a>
+                <span class="desc">A Wayland-native screenshot and screen-recording suite with a Matrix-themed Quickshell overlay. Select a region, then choose Screenshot or Screen Record; recording runs through gpu-screen-recorder with fps and audio options and an on-screen REC indicator. It includes an annotation editor (pen, highlight, rectangle, arrow, text) and uploads the last capture with host failover, copying the URL to the clipboard.</span>
+                <span class="lang">QML</span>
+              </li>
+              <li class="card">
+                <a class="name" href="https://github.com/r3dg0d/KeystrokeNoise">KeystrokeNoise</a>
+                <span class="desc">Subtle mechanical keyboard and mouse click sounds for Linux, run as an evdev daemon across multiple keyboards. Key presses are mapped only to coarse categories (normal, space, enter, modifier, mouse buttons) and discarded immediately, so nothing about what you type is logged or transmitted. Configurable sound packs, a toggle command and a systemd user unit.</span>
+                <span class="lang">Rust</span>
+              </li>
+              <li class="card">
+                <a class="name" href="https://github.com/r3dg0d/matrix">matrix</a>
+                <span class="desc">Realtime Matrix-style digital rain for the terminal, built on crossterm. Truecolor palettes with ANSI-256 fallback, presets, charsets and live controls for speed, density, palette and pause. Original glyph sets, XDG config, shell completions and a Nix flake.</span>
+                <span class="lang">Rust</span>
+              </li>
+              <li class="card">
+                <a class="name" href="https://github.com/r3dg0d/matrix-code-rain-sddm">matrix-code-rain-sddm</a>
+                <span class="desc">A Matrix-inspired SDDM greeter theme for Qt 6: dense Katakana code rain drawn live in QML behind a black-and-green login panel. No video or pre-rendered background, and it imports only QtQuick. The layout scales proportionally from 1080p to ultrawide and 4K, with username selection, masked password entry and a session picker.</span>
+                <span class="lang">QML</span>
+              </li>
+              <li class="card">
+                <a class="name" href="https://github.com/r3dg0d/vmtools">vmtools</a>
+                <span class="desc">A CLI/TUI suite for personal virtual machines: windowsvm and linuxvm on QEMU/KVM/libvirt, and androidvm on Docker-Android-Pro, under a vmtools umbrella. Commands cover doctor checks, VM creation from an ISO, interactive terminal menus and desktop entries. It defaults to the per-user libvirt session so disks stay in the user&#x27;s data directory.</span>
+                <span class="lang">Python</span>
+              </li>
+            </ul>
+          </div>
       </section>
 
       <section id="socials" aria-labelledby="socials-title">
         <div class="section-grid">
-          <h2 class="label" id="socials-title">05 / socials</h2>
+          <h2 class="label" id="socials-title">02 / socials</h2>
           <ul class="socials">
             <li class="social"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg><div><a href="https://github.com/r3dg0d">GitHub</a><span class="handle">@r3dg0d</span></div></li>
             <li class="social"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg><div><a href="https://github.com/r3dg0d?tab=repositories">Repositories</a><span class="handle">open-source projects</span></div></li>
@@ -383,7 +327,7 @@
       </main>
 
       <footer>
-        <p class="signal">online / california · now playing: game dev</p>
+        <p class="signal">open source / california</p>
         <p>© 2026 r3dg0d</p>
       </footer>
     </div>
