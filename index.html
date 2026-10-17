@@ -262,38 +262,156 @@
           if (now.getMonth() + 1 < b[1] || (now.getMonth() + 1 === b[1] && now.getDate() < b[2])) age--;
           if (age > 0 && age < 120) el.textContent = String(age);
         }
-        // Lightweight twinkling starfield; CSS nebula/stars remain without JS.
-        var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        // Animated nebula starfield: twinkling, gently drifting stars in
+        // three depth layers (nearer = larger, brighter, slightly faster).
+        // The CSS nebula/starfield above remains as the no-JS / static fallback.
         var canvas = document.getElementById("stars");
         if (!canvas || !canvas.getContext) return;
         var ctx = canvas.getContext("2d");
-        var stars = [], w = 0, h = 0, raf = 0;
-        function resize() {
-          w = canvas.width = window.innerWidth;
-          h = canvas.height = window.innerHeight;
-          var n = Math.min(140, Math.floor(w * h / 14000));
+        if (!ctx) return;
+        var motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+        var stars = [], w = 0, h = 0, raf = 0, running = false, lastT = 0;
+        var meteor = null, nextMeteor = 0;
+        var COLORS = ["#ffffff", "#ffffff", "#e9d5ff", "#f0abfc", "#ddd6fe"];
+
+        function makeStars() {
           stars = [];
-          for (var i = 0; i < n; i++) stars.push({x: Math.random()*w, y: Math.random()*h, r: Math.random()*1.3+.3, p: Math.random()*Math.PI*2, s: .008+Math.random()*.02});
-          draw(0);
+          // Scale to viewport area (fewer on mobile), hard-capped for perf.
+          var n = Math.max(50, Math.min(160, Math.floor(w * h / 11000)));
+          for (var i = 0; i < n; i++) {
+            var layer = Math.random() < 0.5 ? 0 : (Math.random() < 0.7 ? 1 : 2); // far, mid, near
+            stars.push({
+              x: Math.random() * w,
+              y: Math.random() * h,
+              layer: layer,
+              r: 0.3 + Math.random() * 0.7 + layer * 0.45,          // near stars larger
+              baseA: 0.35 + Math.random() * 0.45 + layer * 0.08,
+              phase: Math.random() * Math.PI * 2,                    // twinkle phase
+              twinkle: 0.4 + Math.random() * 1.1,                    // twinkle speed (varied)
+              vx: -(0.6 + layer * 0.9) * (0.4 + Math.random() * 0.6), // slow leftward drift, px/s scaled below
+              vy: (Math.random() - 0.5) * (1.2 + layer * 1.4),       // gentle vertical float
+              swayPhase: Math.random() * Math.PI * 2,
+              swaySpeed: 0.15 + Math.random() * 0.3,
+              color: COLORS[Math.floor(Math.random() * COLORS.length)]
+            });
+          }
         }
-        function draw(t) {
+
+        function resize() {
+          var dpr = Math.min(window.devicePixelRatio || 1, 2); // cap DPR at 2
+          w = window.innerWidth;
+          h = window.innerHeight;
+          canvas.width = Math.round(w * dpr);
+          canvas.height = Math.round(h * dpr);
+          ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+          makeStars();
+          drawStatic();
+        }
+
+        function drawStatic() {
+          // One still frame: used for reduced motion and as first paint.
           ctx.clearRect(0, 0, w, h);
           for (var i = 0; i < stars.length; i++) {
             var s = stars[i];
-            var a = reduce ? .8 : .45 + Math.abs(Math.sin(t*.001 + s.p)) * .55;
-            ctx.globalAlpha = a;
-            ctx.fillStyle = i % 5 === 0 ? "#f0abfc" : "#ffffff";
-            ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI*2); ctx.fill();
+            ctx.globalAlpha = Math.min(1, s.baseA + 0.25);
+            ctx.fillStyle = s.color;
+            ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2); ctx.fill();
           }
           ctx.globalAlpha = 1;
-          if (!reduce) raf = requestAnimationFrame(draw);
         }
+
+        function spawnMeteor(now) {
+          var fromLeft = Math.random() < 0.5;
+          meteor = {
+            x: fromLeft ? Math.random() * w * 0.35 : w * 0.45 + Math.random() * w * 0.45,
+            y: Math.random() * h * 0.3,
+            vx: (fromLeft ? 1 : -1) * (260 + Math.random() * 160), // px/s
+            vy: 150 + Math.random() * 90,
+            born: now,
+            life: 750 + Math.random() * 350 // ms
+          };
+          // Next one is rare: 7-16 seconds away.
+          nextMeteor = now + 7000 + Math.random() * 9000;
+        }
+
+        function drawMeteor(now) {
+          var age = now - meteor.born;
+          if (age > meteor.life) { meteor = null; return; }
+          var k = age / meteor.life;
+          var fade = k < 0.15 ? k / 0.15 : 1 - (k - 0.15) / 0.85;
+          var mx = meteor.x + meteor.vx * age / 1000;
+          var my = meteor.y + meteor.vy * age / 1000;
+          var tail = 90;
+          var grad = ctx.createLinearGradient(mx, my, mx - meteor.vx / Math.abs(meteor.vx) * tail, my - tail * 0.55);
+          grad.addColorStop(0, "rgba(240,171,252," + (0.75 * fade).toFixed(3) + ")");
+          grad.addColorStop(1, "rgba(240,171,252,0)");
+          ctx.globalAlpha = 1;
+          ctx.strokeStyle = grad;
+          ctx.lineWidth = 1.4;
+          ctx.lineCap = "round";
+          ctx.beginPath(); ctx.moveTo(mx, my);
+          ctx.lineTo(mx - meteor.vx / Math.abs(meteor.vx) * tail, my - tail * 0.55); ctx.stroke();
+        }
+
+        function frame(now) {
+          if (!running) return;
+          var dt = Math.min(50, lastT ? now - lastT : 16.7); // cap delta, ms
+          lastT = now;
+          ctx.clearRect(0, 0, w, h);
+          for (var i = 0; i < stars.length; i++) {
+            var s = stars[i];
+            var depth = 0.35 + s.layer * 0.45; // parallax-ish depth factor
+            // Gentle drift with a slow sinusoidal sway; wrap at the edges.
+            s.x += s.vx * depth * dt / 100;
+            s.y += s.vy * depth * dt / 100 + Math.sin(now * 0.001 * s.swaySpeed + s.swayPhase) * 0.006 * depth;
+            if (s.x < -3) s.x = w + 3; else if (s.x > w + 3) s.x = -3;
+            if (s.y < -3) s.y = h + 3; else if (s.y > h + 3) s.y = -3;
+            // Twinkle: opacity and radius pulse, each at its own rate/phase.
+            var tw = Math.sin(now * 0.001 * s.twinkle + s.phase);
+            var alpha = s.baseA + tw * 0.32;
+            if (alpha < 0.05) alpha = 0.05; else if (alpha > 1) alpha = 1;
+            var radius = s.r * (0.78 + 0.30 * (tw * 0.5 + 0.5));
+            ctx.globalAlpha = alpha;
+            ctx.fillStyle = s.color;
+            ctx.beginPath(); ctx.arc(s.x, s.y, radius, 0, Math.PI * 2); ctx.fill();
+            // Soft glow on the few nearest, brightest stars.
+            if (s.layer === 2 && tw > 0.55) {
+              ctx.globalAlpha = (tw - 0.55) * 0.18;
+              ctx.beginPath(); ctx.arc(s.x, s.y, radius * 3.2, 0, Math.PI * 2); ctx.fill();
+            }
+          }
+          ctx.globalAlpha = 1;
+          if (!meteor && now >= nextMeteor) spawnMeteor(now);
+          if (meteor) drawMeteor(now);
+          raf = requestAnimationFrame(frame);
+        }
+
+        function start() {
+          if (running || motionQuery.matches || document.hidden) return;
+          running = true; lastT = 0;
+          nextMeteor = performance.now() + 5000 + Math.random() * 7000;
+          raf = requestAnimationFrame(frame);
+        }
+        function stop() {
+          running = false;
+          if (raf) cancelAnimationFrame(raf);
+          raf = 0;
+        }
+
         resize();
-        if (!reduce) raf = requestAnimationFrame(draw);
-        window.addEventListener("resize", resize, {passive: true});
+        start();
+        var resizeTimer = 0;
+        window.addEventListener("resize", function () {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(function () { resize(); if (!motionQuery.matches && !document.hidden) { stop(); start(); } }, 120);
+        }, {passive: true});
         document.addEventListener("visibilitychange", function () {
-          if (reduce) return;
-          if (document.hidden) cancelAnimationFrame(raf); else raf = requestAnimationFrame(draw);
+          if (document.hidden) stop();
+          else if (motionQuery.matches) drawStatic();
+          else start();
+        });
+        if (motionQuery.addEventListener) motionQuery.addEventListener("change", function () {
+          if (motionQuery.matches) { stop(); drawStatic(); } else start();
         });
       })();
     </script>
