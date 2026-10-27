@@ -1,0 +1,49 @@
+{
+  "_comment": "Single source of truth for featured projects. Verified against the GitHub API (public, not archived, README present) on 2026-10-26. After editing, run: python3 scripts/sync_projects.py",
+  "owner": "r3dg0d",
+  "featured": [
+    {
+      "name": "stream-able",
+      "category": "Game tools",
+      "tags": ["Java", "Minecraft", "Fabric"],
+      "description": "An OBS-like recording, livestreaming and multistreaming studio that runs inside Minecraft, with interactive Chromium browser sources composited over gameplay."
+    },
+    {
+      "name": "blurcam",
+      "category": "Privacy",
+      "tags": ["C++", "Linux", "Virtual camera"],
+      "description": "A native C++20 Linux CLI that blurs, pixelates or distorts faces locally. No accounts, cloud inference or telemetry."
+    },
+    {
+      "name": "ghostfx",
+      "category": "Terminal",
+      "tags": ["GLSL", "Ghostty", "NixOS"],
+      "description": "250+ original animated GLSL shaders for the Ghostty terminal, with a CLI that installs them safely and a Home Manager module."
+    },
+    {
+      "name": "ai-media-cli",
+      "category": "Local SI tooling",
+      "tags": ["Python", "Local-first", "MCP"],
+      "description": "A local-first media CLI suite: Qwen image generation and editing, a 3D asset pipeline, video jobs and music generation. Model weights are not bundled."
+    },
+    {
+      "name": "nixpresence",
+      "category": "Linux",
+      "tags": ["Rust", "VRChat", "NixOS"],
+      "description": "A NixOS-friendly VRChat OSC chatbox compositor with an optional Discord Rich Presence daemon."
+    },
+    {
+      "name": "dotfiles",
+      "category": "NixOS",
+      "tags": ["NixOS", "niri", "Rice"],
+      "description": "A deep-space niri desktop for NixOS: palette-driven configs, an SDDM theme and a procedural nebula wallpaper."
+    }
+  ],
+  "more": [
+    {"name": "opsec-check", "description": "Read-only privacy and OPSEC audit CLI for Linux."},
+    {"name": "vmtools", "description": "NixOS-friendly VM CLI suite (QEMU/KVM, Docker-Android)."},
+    {"name": "matrix", "description": "Realtime Matrix-style digital rain for the terminal."},
+    {"name": "KeystrokeNoise", "description": "Mechanical keyboard and mouse click sounds for Linux."},
+    {"name": "nulltype-font", "description": "An original chamfered monospace font under the OFL."}
+  ]
+}

@@ -13,7 +13,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Structure, metadata and anchors
-        run: python3 scripts/check_site.py
+      - uses: actions/checkout@v4
+        with:
+          repository: r3dg0d/r3dg0d
+          path: profile
+      - name: Structure, metadata, accessibility and stale references
+        run: python3 scripts/check_site.py --readme profile/README.md
+      - name: Generated project blocks are up to date
+        run: python3 scripts/sync_projects.py --check --readme profile/README.md
       - name: External links
         run: python3 scripts/check_site.py --links
